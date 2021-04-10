@@ -20,14 +20,21 @@ class AlienInvasion:
     def run_game(self):
         """Запуск основного цикла игры"""
         while True:
-            for event in pygame.event.get():
+            self._check_events()
+            self._update_screen()
+
+            pygame.display.flip()
+
+    def _check_events(self):
+        """Обработка событий клавиатуры и мыши"""
+        for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
 
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()
-
-            pygame.display.flip()
+    def _update_screen(self):
+        """Обновляет изображение на экране и выводит экран"""
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
 
 if __name__ == '__main__':
     ai = AlienInvasion()
